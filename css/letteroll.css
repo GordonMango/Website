@@ -1,0 +1,73 @@
+/* Letter roll-down effect (used by index SG message) */
+.letter-roll {
+	display: inline-block;
+	white-space: pre;
+	transform-origin: top center;
+	overflow: hidden;
+	will-change: transform, clip-path, opacity;
+	opacity: 0;
+	transform: perspective(900px) rotateX(-65deg) translateY(-6px);
+	clip-path: inset(0 0 100% 0);
+	-webkit-clip-path: inset(0 0 100% 0);
+}
+
+.letter-roll.is-visible {
+	animation: letterRollDown 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes letterRollDown {
+	0% {
+		opacity: 0;
+		transform: perspective(900px) rotateX(-65deg) translateY(-6px);
+		clip-path: inset(0 0 100% 0);
+		-webkit-clip-path: inset(0 0 100% 0);
+	}
+	60% {
+		opacity: 1;
+		transform: perspective(900px) rotateX(-12deg) translateY(0);
+		clip-path: inset(0 0 0 0);
+		-webkit-clip-path: inset(0 0 0 0);
+	}
+	100% {
+		opacity: 1;
+		transform: perspective(900px) rotateX(0deg) translateY(0);
+		clip-path: inset(0 0 0 0);
+		-webkit-clip-path: inset(0 0 0 0);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.letter-roll,
+	.letter-roll.is-visible {
+		animation: none !important;
+		opacity: 1 !important;
+		transform: none !important;
+		clip-path: none !important;
+		-webkit-clip-path: none !important;
+	}
+}
+
+/* Envelope unfold container */
+.letter-envelope,
+[data-letter-unfold] {
+	transform-origin: top center;
+	transform: perspective(900px) rotateX(-80deg) translateY(-6px);
+	opacity: 0;
+	transition: transform 700ms cubic-bezier(0.22,1,0.36,1), opacity 380ms ease;
+	-webkit-transform-origin: top center;
+	-webkit-transform: perspective(900px) rotateX(-80deg) translateY(-6px);
+	will-change: transform, opacity;
+	backface-visibility: hidden;
+}
+
+[data-letter-unfold].is-open,
+.letter-envelope.is-open {
+	transform: perspective(900px) rotateX(0deg) translateY(0);
+	-webkit-transform: perspective(900px) rotateX(0deg) translateY(0);
+	opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	[data-letter-unfold], .letter-envelope { transition: none !important; transform: none !important; opacity: 1 !important; }
+}
+
