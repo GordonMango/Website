@@ -35,6 +35,17 @@
       #navbar-container * {
         position: static !important;
       }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        25% { transform: translateY(-10px) rotate(-5deg); }
+        50% { transform: translateY(0px) rotate(0deg); }
+        75% { transform: translateY(-10px) rotate(5deg); }
+      }
+
+      .floating-rocket {
+        animation: float 4s ease-in-out infinite;
+      }
     </style>
   </head>
   <body class="body-2">
@@ -63,34 +74,34 @@
         </div>
       </section>
 
-      <!-- Application Status Section -->
-      <section class="section" style="background-color: #ffffff; padding: 60px 0;">
+      <!-- Application Redirect Section -->
+      <section class="section" style="background-color: #ffffff; padding: 80px 0;">
         <div class="container">
-          <div class="application-form" style="text-align: center; background: linear-gradient(135deg, #f8f8f8 0%, #f0e6ff 100%);">
-            <div style="margin-bottom: 30px;">
-              <div style="font-size: 48px; margin-bottom: 20px;">🚀</div>
-              <h2 style="font-family: 'Rethink Sans', sans-serif; font-size: 32px; font-weight: 700; color: #333; margin-bottom: 15px;">
-                Staff Applications Coming Soon!
+          <div class="application-form" style="text-align: center; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e8ce0 100%); padding: 60px 30px; border-radius: 20px;">
+            <div style="margin-bottom: 40px;">
+              <div class="floating-rocket" style="font-size: 64px; margin-bottom: 20px;">🚀</div>
+              <h2 style="font-family: 'Inter Tight', sans-serif; font-size: 36px; font-weight: 700; color: #ffffff; margin-bottom: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+                Staff Applications Now Open!
               </h2>
-              <p style="font-family: 'Rethink Sans', sans-serif; font-size: 18px; color: #666; line-height: 1.6; margin: 0;">
-                We're excited to invite you to join the SPAMUN 2026 staff team!
+              <p style="font-family: 'Rethink Sans', sans-serif; font-size: 20px; color: #ffffff; line-height: 1.6; margin: 0; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Ready to join the SPAMUN 2026 team? We're looking for passionate students who want to help create an unforgettable conference experience!
               </p>
             </div>
 
-            <div style="background: white; padding: 30px; border-radius: 12px; margin: 30px 0; border-left: 4px solid #7300ff;">
-              <p style="font-family: 'Rethink Sans', sans-serif; font-size: 16px; color: #555; line-height: 1.8; margin: 0;">
-                Applications are not open yet, but we're looking forward to hearing from passionate students like you who want to be part of an incredible conference experience!
+            <div style="background: rgba(255,255,255,0.95); padding: 40px; border-radius: 15px; margin: 30px 0; box-shadow: 0 8px 25px rgba(0,0,0,0.1);">
+              <p style="font-family: 'Rethink Sans', sans-serif; font-size: 18px; color: #333; line-height: 1.8; margin: 0 0 25px 0;">
+                Apply now to secure your position on the SPAMUN staff team. This is your opportunity to develop leadership skills and make a real impact!
               </p>
-              <p style="font-family: 'Rethink Sans', sans-serif; font-size: 14px; color: #888; margin-top: 15px; margin-bottom: 0;">
-                Check back soon or email us to be notified when applications open.
+              
+              <a href="https://form.jotform.com/251310476610043?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnDECYgJ0TMMi4k5C6gvL2Ratr53A97ACmX3nI5jAC0B_3lKzSm1DAXmFYmAo_aem_iv8PAJ14FmU5rmfof_Di5Q" 
+                 style="display: inline-block; padding: 16px 40px; background: linear-gradient(135deg, #1e3c72 0%, #7e8ce0 100%); color: white; text-decoration: none; border-radius: 50px; font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 18px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 6px 20px rgba(30,60,114,0.3); border: 2px solid rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 1px;">
+                Apply to Staff Team
+              </a>
+              
+              <p style="font-family: 'Rethink Sans', sans-serif; font-size: 14px; color: #666; margin-top: 25px; margin-bottom: 0;">
+                Questions about the application process? We're here to help!
               </p>
-            </div>
-
-            <div style="margin-top: 30px;">
-              <p style="font-family: 'Rethink Sans', sans-serif; font-size: 15px; color: #666; margin-bottom: 15px;">
-                Questions? Reach out to us:
-              </p>
-              <a href="mailto:spamundelegateinquiries@southpointe.ca" style="display: inline-block; padding: 12px 30px; background: #7300ff; color: white; text-decoration: none; border-radius: 8px; font-family: 'Rethink Sans', sans-serif; font-weight: 600; transition: all 0.3s ease;">
+              <a href="mailto:spamundelegateinquiries@southpointe.ca" style="display: inline-block; padding: 12px 25px; background: #f8f8f8; color: #333; text-decoration: none; border-radius: 8px; font-family: 'Rethink Sans', sans-serif; font-weight: 600; transition: all 0.3s ease; margin-top: 10px;">
                 Contact Us
               </a>
             </div>
