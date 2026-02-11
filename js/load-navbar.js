@@ -10,6 +10,13 @@ document.addEventListener('DOMContentLoaded', function() {
     return;
   }
   
+  // Load banner CSS
+  const bannerCSS = document.createElement('link');
+  bannerCSS.rel = 'stylesheet';
+  bannerCSS.href = 'css/banner.css';
+  bannerCSS.type = 'text/css';
+  document.head.appendChild(bannerCSS);
+  
   // Fetch navbar.html
   fetch('navbar.html')
     .then(response => {
