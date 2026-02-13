@@ -43,24 +43,18 @@
   <script src="js/image-resize.js"></script>
 
   <!-- ✅ FIXES:
-       1) Navbar always on top (no broken dropdowns)
-       2) Banner never covers navbar
-       3) Committee images fill frame without stretching (object-fit: cover)
+       1) Navbar behaves like Home: NOT sticky, scrolls normally
+       2) Committee images fill frame WITHOUT stretching
   -->
   <style>
-    /* --- NAVBAR: keep it above everything --- */
+    /* --- NAVBAR (Home-style): NOT sticky, do NOT break dropdowns --- */
     #navbar-container .navbar {
-      position: fixed !important;
-      top: 0 !important;
-      left: 0 !important;
-      right: 0 !important;
-      z-index: 99999 !important;
-    }
-
-    /* Prevent banner/content from sliding under the fixed navbar.
-       Adjust 90px if your navbar is taller/shorter. */
-    body {
-      padding-top: 90px !important;
+      position: static !important;
+      inset: auto !important;
+      top: auto !important;
+      left: auto !important;
+      right: auto !important;
+      z-index: auto !important;
     }
 
     /* --- COMMITTEE CARD IMAGES: fill frame, no stretch --- */
@@ -156,9 +150,7 @@
               <div role="listitem" class="w-dyn-item">
                 <div class="single-blogs-wrap">
                   <div class="blogs-contant">
-                    <div class="blogs-image">
-                      <img src="comimgs/sochum.png" alt="SOCHUM">
-                    </div>
+                    <div class="blogs-image"><img src="comimgs/sochum.png" alt="SOCHUM"></div>
                     <a href="committees/sochum.html" class="blogs-title-link w-inline-block">
                       <h3 class="blogs-title">Social, Humanitarian and Cultural Committee (SOCHUM)</h3>
                     </a>
@@ -171,9 +163,7 @@
               <div role="listitem" class="w-dyn-item">
                 <div class="single-blogs-wrap">
                   <div class="blogs-contant">
-                    <div class="blogs-image">
-                      <img src="comimgs/hoc.jpg" alt="House of Commons">
-                    </div>
+                    <div class="blogs-image"><img src="comimgs/hoc.jpg" alt="House of Commons"></div>
                     <a href="committees/hoc.html" class="blogs-title-link w-inline-block">
                       <h3 class="blogs-title">House of Commons (HOC)</h3>
                     </a>
@@ -186,9 +176,7 @@
               <div role="listitem" class="w-dyn-item">
                 <div class="single-blogs-wrap">
                   <div class="blogs-contant">
-                    <div class="blogs-image">
-                      <img src="comimgs/DISEC.png" alt="DISEC">
-                    </div>
+                    <div class="blogs-image"><img src="comimgs/DISEC.png" alt="DISEC"></div>
                     <a href="committees/DISEC.html" class="blogs-title-link w-inline-block">
                       <h3 class="blogs-title">Disarmament and International Security Committee (DISEC)</h3>
                     </a>
@@ -201,9 +189,7 @@
               <div role="listitem" class="w-dyn-item">
                 <div class="single-blogs-wrap">
                   <div class="blogs-contant">
-                    <div class="blogs-image">
-                      <img src="comimgs/group of 20.webp" alt="G20 Summit">
-                    </div>
+                    <div class="blogs-image"><img src="comimgs/group of 20.webp" alt="G20 Summit"></div>
                     <a href="committees/g20.html" class="blogs-title-link w-inline-block">
                       <h3 class="blogs-title">The Group of Twenty (G20)</h3>
                     </a>
@@ -216,9 +202,7 @@
               <div role="listitem" class="w-dyn-item">
                 <div class="single-blogs-wrap">
                   <div class="blogs-contant">
-                    <div class="blogs-image">
-                      <img src="comimgs/jcc.webp" alt="Joint Crisis Committee">
-                    </div>
+                    <div class="blogs-image"><img src="comimgs/jcc.webp" alt="Joint Crisis Committee"></div>
                     <a href="committees/jcc.html" class="blogs-title-link w-inline-block">
                       <h3 class="blogs-title">Joint Crisis Committee (JCC)</h3>
                     </a>
@@ -231,9 +215,7 @@
               <div role="listitem" class="w-dyn-item">
                 <div class="single-blogs-wrap">
                   <div class="blogs-contant">
-                    <div class="blogs-image">
-                      <img src="comimgs/unsc.jpg" alt="UNSC">
-                    </div>
+                    <div class="blogs-image"><img src="comimgs/unsc.jpg" alt="UNSC"></div>
                     <a href="committees/unsc.html" class="blogs-title-link w-inline-block">
                       <h3 class="blogs-title">United Nations Security Council (UNSC)</h3>
                     </a>
