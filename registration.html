@@ -5,156 +5,451 @@
   <meta charset="utf-8" />
   <title>SPAMUN - Registration</title>
   <meta content="SPAMUN - Registration" property="og:title" />
-  <meta content="SPAMUN 2025 registration is currently closed. Check back for future conference updates." property="og:description" />
+  <meta content="SPAMUN 2025 registration is now open!" property="og:description" />
   <meta content="SPAMUN - Registration" property="twitter:title" />
-  <meta name="twitter:description" content="SPAMUN 2025 registration is currently closed. Check back for future conference updates." />
+  <meta name="twitter:description" content="SPAMUN 2025 registration is now open!" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="og:image" content="../img/logo.png" />
   <meta name="twitter:image" content="../img/logo.png" />
   <meta content="width=device-width, initial-scale=1" name="viewport" />
   <meta content="Webflow" name="generator" />
   <link href="css/styles.css" rel="stylesheet" type="text/css" />
-  <style>
-    /* --- force the grid to be responsive --- */
-    .pricing-plan-grid{
-      /* switch from the inline flex to a real grid */
-      display:grid !important;
-      gap:2rem;
-
-      /* as-many columns as fit, min 280 px each */
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      width:100%;
-    }
-
-    /* --- let each card stretch/shrink freely --- */
-    .pricing-plan-card{
-      width:100% !important;
-      max-width:none !important;   /* removes the 420 px ceiling */
-      min-width:0 !important;      /* prevents min-content quirks */
-    }
-    /* Disable sticky navbar */
-    #navbar-container {
-      position: static !important;
-    }
-
-    #navbar-container * {
-      position: static !important;
-    }
-  </style>
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
-  <script
-    type="text/javascript">WebFont.load({ google: { families: ["Rethink Sans:regular,500,600,700,800", "Inter Tight:300,regular,500,600,700,800,900"] } });</script>
-  <script
-    type="text/javascript">!function (o, c) { var n = c.documentElement, t = " w-mod-"; n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch") }(window, document);</script>
+  <script type="text/javascript">WebFont.load({ google: { families: ["Rethink Sans:regular,500,600,700,800", "Inter Tight:300,regular,500,600,700,800,900"] } });</script>
+  <script type="text/javascript">!function (o, c) { var n = c.documentElement, t = " w-mod-"; n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch") }(window, document);</script>
   <link href="../img/favicon.png" rel="shortcut icon" type="image/x-icon" />
   <link href="../img/favicon.png" rel="apple-touch-icon" />
   <link href="../img/favicon.png" rel="icon" type="image/png"/>
-  <script
-    type="text/javascript">window.__WEBFLOW_CURRENCY_SETTINGS = { "currencyCode": "USD", "symbol": "$", "decimal": ".", "fractionDigits": 2, "group": ",", "template": "{{wf {\"path\":\"symbol\",\"type\":\"PlainText\"} }} {{wf {\"path\":\"amount\",\"type\":\"CommercePrice\"} }} {{wf {\"path\":\"currencyCode\",\"type\":\"PlainText\"} }}", "hideDecimalForWholeNumbers": false };</script>
+  <script type="text/javascript">window.__WEBFLOW_CURRENCY_SETTINGS = { "currencyCode": "USD", "symbol": "$", "decimal": ".", "fractionDigits": 2, "group": ",", "template": "{{wf {\"path\":\"symbol\",\"type\":\"PlainText\"} }} {{wf {\"path\":\"amount\",\"type\":\"CommercePrice\"} }} {{wf {\"path\":\"currencyCode\",\"type\":\"PlainText\"} }}", "hideDecimalForWholeNumbers": false };</script>
+
+  <style>
+    /* ─── Variables ─── */
+    :root {
+      --bg:         #07090e;
+      --blue:       #3b82f6;
+      --blue-mid:   #2563eb;
+      --blue-dim:   #1d4ed8;
+      --blue-glow:  rgba(59,130,246,0.35);
+      --blue-faint: rgba(59,130,246,0.12);
+      --ivory:      #dde8f7;
+      --card-bg:    rgba(10,17,35,0.85);
+      --card-border: rgba(59,130,246,0.22);
+      --radius:     14px;
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body:    'DM Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       BACKGROUND — dark navy + grid lines + blue radial glow
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .pages-wrapper {
+      font-family: var(--ff-body);
+      color: var(--ivory);
+      min-height: 100vh;
+      background-color: var(--bg);
+      /* grid lines */
+      background-image:
+        linear-gradient(rgba(59,130,246,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59,130,246,0.07) 1px, transparent 1px);
+      background-size: 40px 40px;
+      position: relative;
+    }
+    /* central blue radial glow layered on top of grid */
+    .pages-wrapper::before {
+      content: '';
+      position: fixed;
+      top: -10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 600px;
+      background: radial-gradient(ellipse at center, rgba(37,99,235,0.28) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .pages-wrapper > * { position: relative; z-index: 1; }
+
+    /* ─── Disable sticky navbar ─── */
+    #navbar-container { position: static !important; }
+    #navbar-container * { position: static !important; }
+
+    /* ─── Pricing grid ─── */
+    .pricing-plan-grid {
+      display: grid !important;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      width: 100%;
+    }
+    .pricing-plan-card {
+      width: 100% !important;
+      max-width: none !important;
+      min-width: 0 !important;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       HERO BANNER
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .inner-banner {
+      position: relative;
+      padding: 7rem 1.5rem 5rem;
+      text-align: center;
+      overflow: hidden;
+    }
+    .inner-banner::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 5%; right: 5%;
+      height: 1px;
+      background: rgba(59,130,246,0.2);
+    }
+
+    .registration-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid rgba(59,130,246,0.4);
+      border-radius: 999px;
+      padding: 0.35rem 1.1rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #93c5fd;
+      background: rgba(59,130,246,0.1);
+      margin-bottom: 1.6rem;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 16px rgba(59,130,246,0.25);
+      animation: fadeDown 0.7s ease both;
+    }
+    .registration-badge .dot-live {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 8px #4ade80;
+      animation: pulse-green 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse-green {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:0.5; transform:scale(1.5); }
+    }
+
+    .inner-banner-title {
+      font-family: var(--ff-display);
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 300;
+      font-style: italic;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: #fff;
+      text-shadow: 0 0 40px rgba(59,130,246,0.3);
+      animation: fadeDown 0.8s 0.1s ease both;
+    }
+    .inner-banner-title span {
+      color: #60a5fa;
+      font-style: normal;
+      font-weight: 600;
+      text-shadow: 0 0 30px rgba(96,165,250,0.6);
+    }
+    .inner-banner-details {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: rgba(221,232,247,0.6);
+      letter-spacing: 0.02em;
+      animation: fadeDown 0.8s 0.2s ease both;
+    }
+
+    @keyframes fadeDown {
+      from { opacity:0; transform:translateY(-18px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(24px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       PRICING SECTION
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .section.pricing-plan { padding: 3rem 1.5rem 5rem; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 1.5rem; }
+
+    .pricing-plan-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      backdrop-filter: blur(12px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      animation: fadeUp 0.8s 0.3s ease both;
+      box-shadow: 0 0 0 1px rgba(59,130,246,0.1), 0 8px 40px rgba(0,0,0,0.5);
+    }
+    .pricing-plan-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(59,130,246,0.5);
+      box-shadow: 0 0 30px rgba(59,130,246,0.2), 0 16px 60px rgba(0,0,0,0.6);
+    }
+
+    .pricing-plan-card-contant { padding: 2.5rem 2rem 2rem; }
+
+    .pricing-plan-logo-info-wrap {
+      display: flex; align-items: center; gap: 1.2rem; margin-bottom: 2rem;
+    }
+    .pricing-plan-logo-wrap {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: rgba(59,130,246,0.12);
+      border: 1px solid rgba(59,130,246,0.25);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      box-shadow: 0 0 12px rgba(59,130,246,0.2);
+    }
+    .pricing-plan-logo { width: 32px; height: 32px; object-fit: contain; }
+
+    .pricing-plan-name {
+      font-family: var(--ff-display);
+      font-size: 1.5rem; font-weight: 600;
+      color: #fff !important; line-height: 1.15;
+    }
+    .pricing-plan-info {
+      font-size: 0.82rem; color: #93c5fd !important;
+      margin-top: 0.2rem; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+
+    .plan-price-wrap {
+      display: flex; align-items: baseline; gap: 0.5rem;
+      margin-bottom: 2rem; padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(59,130,246,0.15);
+    }
+    .plan-price {
+      font-family: var(--ff-display); font-size: 3rem; font-weight: 300;
+      color: #60a5fa !important; line-height: 1;
+      text-shadow: 0 0 20px rgba(96,165,250,0.5);
+    }
+    .plan-price-flex-wrap { display: flex; flex-direction: column; }
+    .plan-price-info { font-size: 0.78rem; color: rgba(221,232,247,0.4) !important; letter-spacing: 0.05em; }
+
+    .plan-feature-card { margin-bottom: 2rem; }
+    .plan-feature-list-wrap { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .plan-feature-item-wrap {
+      display: flex; align-items: center; gap: 0.75rem;
+      font-size: 0.9rem; color: rgba(221,232,247,0.8);
+    }
+    .plan-feature-item-wrap::before {
+      content: '✦'; color: #3b82f6; font-size: 0.6rem; flex-shrink: 0;
+    }
+
+    /* CTA Button */
+    .plan-button {
+      display: block; width: 100%; padding: 1rem 1.5rem;
+      border-radius: 10px;
+      background: var(--blue-mid);
+      color: #fff;
+      font-family: var(--ff-body); font-size: 0.88rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; text-align: center;
+      text-decoration: none; cursor: pointer; border: none;
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 0 20px rgba(59,130,246,0.4), 0 4px 16px rgba(0,0,0,0.4);
+      margin-bottom: 1.5rem;
+    }
+    .plan-button:hover {
+      background: var(--blue);
+      transform: translateY(-2px);
+      box-shadow: 0 0 32px rgba(59,130,246,0.6), 0 8px 24px rgba(0,0,0,0.5);
+    }
+    .plan-button-text { pointer-events: none; }
+    .plan-button-hover-text { display: none; }
+
+    .pricing-plan-details-wrap { margin-top: 0.5rem; }
+    .pricing-plan-details-info {
+      font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em;
+      color: #3b82f6 !important; margin-bottom: 0.4rem;
+    }
+    .pricing-plan-details { font-size: 0.85rem; color: rgba(221,232,247,0.45) !important; line-height: 1.6; }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       REGISTRATION FORM SECTION
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .section.registration-form-section { padding: 2rem 1.5rem 5rem; }
+
+    .form-section-header { text-align: center; margin-bottom: 3rem; }
+
+    .section-mini-title-flex {
+      display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 0.8rem;
+    }
+    .section-title-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #3b82f6; box-shadow: 0 0 8px rgba(59,130,246,0.8);
+    }
+    .section-mini-title {
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: #60a5fa;
+    }
+    .form-section-title {
+      font-family: var(--ff-display); font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 300; font-style: italic; color: #fff; line-height: 1.1;
+      text-shadow: 0 0 30px rgba(59,130,246,0.25);
+    }
+    .form-section-subtitle { margin-top: 0.75rem; font-size: 0.95rem; color: rgba(221,232,247,0.5); }
+
+    .jotform-wrap {
+      position: relative; border-radius: var(--radius); overflow: hidden;
+      border: 1px solid rgba(59,130,246,0.25);
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 60px rgba(59,130,246,0.12), 0 24px 80px rgba(0,0,0,0.5);
+      animation: fadeUp 0.9s 0.2s ease both;
+    }
+    .jotform-wrap iframe {
+      display: block; width: 100%; min-height: 900px; border: none; background: transparent;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       COUNTRY MATRIX
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .section.country-matrix {
+      text-align: center; padding: 4rem 1.5rem;
+      border-top: 1px solid rgba(59,130,246,0.1);
+    }
+    .section-title {
+      font-family: var(--ff-display); font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 300; font-style: italic; color: #fff;
+    }
+    .section-details { font-size: 0.9rem; color: rgba(221,232,247,0.5); margin-top: 0.5rem; }
+    
+    .country-matrix-wrap {
+      position: relative; border-radius: var(--radius); overflow: hidden;
+      border: 1px solid rgba(59,130,246,0.25);
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 60px rgba(59,130,246,0.12), 0 24px 80px rgba(0,0,0,0.5);
+      animation: fadeUp 0.9s 0.2s ease both;
+      margin-top: 2rem;
+    }
+    .country-matrix-wrap iframe {
+      display: block; width: 100%; min-height: 700px; border: none; background: transparent;
+    }
+    
+    .matrix-button {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      margin-top: 2rem; padding: 0.9rem 2.2rem;
+      border: 1px solid rgba(59,130,246,0.4); border-radius: 10px;
+      color: #93c5fd; font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+      transition: background 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 0 12px rgba(59,130,246,0.15);
+    }
+    .matrix-button:hover {
+      background: rgba(59,130,246,0.15);
+      box-shadow: 0 0 24px rgba(59,130,246,0.3);
+    }
+
+    /* display-none override */
+    .display-none { display: none !important; }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       FOOTER
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .section.footer { padding: 0; }
+    .footer-wrapper { background: rgba(5,8,15,0.95); border-top: 1px solid rgba(59,130,246,0.1); }
+    .footer-contact-wrap { display: flex; gap: 3rem; flex-wrap: wrap; padding: 3rem 1.5rem 2.5rem; }
+    .footer-contact-info-name {
+      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: #3b82f6; margin-bottom: 0.4rem;
+    }
+    .footer-contact-info-details {
+      font-family: var(--ff-display); font-size: 1.1rem; font-weight: 300; color: rgba(221,232,247,0.75);
+    }
+    .section-divider { height: 1px; background: rgba(59,130,246,0.1); margin: 0 1.5rem; }
+    .footer-bottom-wrap {
+      padding: 1.5rem; display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid rgba(59,130,246,0.08); flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo { max-width: 40px; height: auto; opacity: 0.75; }
+    .footer-logo-wrap { text-decoration: none; }
+    .footer-social-link-copyright { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+    .single-social-link {
+      text-decoration: none; font-size: 0.82rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(221,232,247,0.4); transition: color 0.2s ease;
+    }
+    .single-social-link:hover { color: #60a5fa; }
+    .social-media-hover-text { display: none; }
+    .footer-copyright { font-size: 0.78rem; color: rgba(221,232,247,0.25); }
+    .footer-circle-wrap, .footer-circle { display: none; }
+    .footer-top-wrap { display: none; }
+  </style>
 </head>
 
 <body>
   <div class="pages-wrapper">
     <div id="navbar-container"></div>
     <script src="js/load-navbar.js"></script>
+
+    <!-- ─── HERO BANNER ─── -->
     <section class="section inner-banner mg-bottom-9-875-rem">
       <div class="container">
         <div class="inner-banner-wrapper">
-          <div class="inner-banner-contant-wrap">
-            <div class="section-mini-title-wrap">
-              <div class="section-mini-title-flex">
-                <div class="section-title-dot"></div>
-                <div class="section-mini-title">Registration</div>
-              </div>
+          <div class="inner-banner-contant-wrap" style="text-align:center;">
+            <div class="registration-badge">
+              <span class="dot-live"></span>
+              Registration Open
             </div>
             <div class="inner-banner-title-wrap">
-              <h1 class="inner-banner-title">Registration Closed</h1>
-              <p class="inner-banner-details" style="text-align: center; margin-top: 10px;">SPAMUN 2025 registration is currently closed</p>
+              <h1 class="inner-banner-title">Register for <span>SPAMUN 2025</span></h1>
+              <p class="inner-banner-details">Secure your spot at South Pointe's Model UN conference</p>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- ─── PRICING CARD ─── -->
     <section class="section pricing-plan">
       <div class="container">
         <div class="pricing-plan-contant-wrap">
-          <div data-current="Tab 1" data-easing="ease" data-duration-in="0" data-duration-out="0"
-            class="pricing-plan-tabs w-tabs">
-            <div class="pricing-plan-tabs-menu w-tab-menu">
-            </div>
-            <div class="pricing-plan-tabs-contant w-tab-content">
-              <div data-w-tab="Tab 1" class="pricing-plan-tab-pane w-tab-pane w--tab-active">
-                <div class="pricing-plan-tab-contant-wrap">
-                  <div class="w-dyn-list">
-                    <div role="list" class="pricing-plan-grid w-dyn-items">
-                      <div role="listitem" class="w-dyn-item">
-                        <div class="pricing-plan-card">
-                          <div class="pricing-plan-card-contant">
-                            <div class="pricing-plan-logo-info-wrap">
-                              <div class="pricing-plan-logo-wrap">
-                                <img loading="lazy" alt="" src="../images/pricing-plan-icon-1.png" class="pricing-plan-logo" />
-                              </div>
-                              <div class="pricing-plan-info-wrap">
-                                <div class="pricing-plan-name-wrap">
-                                  <h2 class="pricing-plan-name" style="color: white;">Delegate</h2>
-                                  <h2 class="pricing-plan-name" style="color: white;">Registration</h2>
-                                </div>
-                                <div class="pricing-plan-info" style="color: white;">Join SPAMUN 2025</div>
-                              </div>
-                            </div>
-                            <div class="plan-price-wrap">
-                              <h2 class="plan-price" style="color: white;">$20.00</h2>
-                              <div class="plan-price-flex-wrap">
-                                <div class="plan-price-info" style="color: white;">/</div>
-                                <div class="plan-price-info" style="color: white;">per Delegate</div>
-                              </div>
-                            </div>
-                            <div class="plan-feature-card">
-                              <ul role="list" class="plan-feature-list-wrap">
-                                <li class="plan-feature-item-wrap">
-                                  <div class="plan-feature-info-wrap">
-                                    <div class="plan-feature-info">Full-day conference access</div>
-                                  </div>
-                                </li>
-                                <li class="plan-feature-item-wrap">
-                                  <div class="plan-feature-info-wrap">
-                                    <div class="plan-feature-info">Lunch provided (pizza & drinks)</div>
-                                  </div>
-                                </li>
-                                <li class="plan-feature-item-wrap">
-                                  <div class="plan-feature-info-wrap">
-                                    <div class="plan-feature-info">Conference materials</div>
-                                  </div>
-                                </li>
-                                <li class="plan-feature-item-wrap">
-                                  <div class="plan-feature-info-wrap">
-                                    <div class="plan-feature-info">Committee participation</div>
-                                  </div>
-                                </li>
-                                <li class="plan-feature-item-wrap">
-                                  <div class="plan-feature-info-wrap">
-                                    <div class="plan-feature-info">Award opportunities</div>
-                                  </div>
-                                </li>
-                                <li class="plan-feature-item-wrap">
-                                  <div class="plan-feature-info-wrap">
-                                    <div class="plan-feature-info">Networking with other delegates</div>
-                                  </div>
-                                </li>
-                              </ul>
-                            </div>
-                          
-                            <div class="plan-button w-inline-block" style="background-color: #999; cursor: not-allowed; opacity: 0.6;">
-                              <div class="plan-button-text">Registration Closed</div>
-                              <div class="plan-button-hover-text">Registration Closed</div>
-                            </div>
-                            <div class="pricing-plan-details-wrap">
-                              <div class="pricing-plan-details-info" style="color: white;">Who it's for:</div>
-                              <div class="pricing-plan-details" style="color: white;">Students in grades 8-12 interested in international relations, diplomacy, and global issues. No prior MUN experience required.</div>
-                            </div>
+          <div class="pricing-plan-tabs-contant">
+            <div class="pricing-plan-tab-contant-wrap">
+              <div class="w-dyn-list">
+                <div role="list" class="pricing-plan-grid w-dyn-items">
+                  <div role="listitem" class="w-dyn-item">
+                    <div class="pricing-plan-card">
+                      <div class="pricing-plan-card-contant">
+                        <div class="pricing-plan-logo-info-wrap">
+                          <div class="pricing-plan-logo-wrap">
+                            <img loading="lazy" alt="" src="../images/pricing-plan-icon-1.png" class="pricing-plan-logo" />
                           </div>
+                          <div class="pricing-plan-info-wrap">
+                            <div class="pricing-plan-name-wrap">
+                              <h2 class="pricing-plan-name">Delegate</h2>
+                              <h2 class="pricing-plan-name">Registration</h2>
+                            </div>
+                            <div class="pricing-plan-info">Join SPAMUN 2025</div>
+                          </div>
+                        </div>
+                        <div class="plan-price-wrap">
+                          <h2 class="plan-price">$20.00</h2>
+                          <div class="plan-price-flex-wrap">
+                            <div class="plan-price-info">/</div>
+                            <div class="plan-price-info">per Delegate</div>
+                          </div>
+                        </div>
+                        <div class="plan-feature-card">
+                          <ul role="list" class="plan-feature-list-wrap">
+                            <li class="plan-feature-item-wrap"><div class="plan-feature-info-wrap"><div class="plan-feature-info">Full-day conference access</div></div></li>
+                            <li class="plan-feature-item-wrap"><div class="plan-feature-info-wrap"><div class="plan-feature-info">Lunch provided (pizza &amp; drinks)</div></div></li>
+                            <li class="plan-feature-item-wrap"><div class="plan-feature-info-wrap"><div class="plan-feature-info">Conference materials</div></div></li>
+                            <li class="plan-feature-item-wrap"><div class="plan-feature-info-wrap"><div class="plan-feature-info">Committee participation</div></div></li>
+                            <li class="plan-feature-item-wrap"><div class="plan-feature-info-wrap"><div class="plan-feature-info">Award opportunities</div></div></li>
+                            <li class="plan-feature-item-wrap"><div class="plan-feature-info-wrap"><div class="plan-feature-info">Networking with other delegates</div></div></li>
+                          </ul>
+                        </div>
+                        <a href="#registration-form" class="plan-button">
+                          <div class="plan-button-text">Register Now →</div>
+                        </a>
+                        <div class="pricing-plan-details-wrap">
+                          <div class="pricing-plan-details-info">Who it's for:</div>
+                          <div class="pricing-plan-details">Students in grades 8–12 interested in international relations, diplomacy, and global issues. No prior MUN experience required.</div>
                         </div>
                       </div>
                     </div>
@@ -166,18 +461,53 @@
         </div>
       </div>
     </section>
-    <section class="section" style="text-align: center; padding: 4rem 0;">
+
+    <!-- ─── REGISTRATION FORM ─── -->
+    <section class="section registration-form-section" id="registration-form">
       <div class="container">
-        <div class="section-title-wrap">
-          <h2 class="section-title">Country Matrix</h2>
-          <p class="section-details" style="margin-bottom: 2rem;">Check which countries are available for each committee</p>
+        <div class="form-section-header">
+          <div class="section-mini-title-flex">
+            <div class="section-title-dot"></div>
+            <div class="section-mini-title">Secure Your Seat</div>
+          </div>
+          <h2 class="form-section-title">Complete Your Registration</h2>
+          <p class="form-section-subtitle">Fill out the form below to register as a delegate for SPAMUN 2025</p>
         </div>
-        <a href="https://docs.google.com/spreadsheets/d/1tyoAkWT6gzwCZTUMF0CXfywvAFHM4jLYVXr4XS-kTqA/edit?usp=sharing" target="_blank" class="plan-button w-inline-block" style="width: 250px; margin: 0 auto;">
-          <div class="plan-button-text">View Country Matrix</div>
-          <div class="plan-button-hover-text">View Country Matrix</div>
-        </a>
+        <div class="jotform-wrap">
+          <iframe
+            id="JotFormIFrame-251228111219042"
+            title="SPAMUN 2025 Delegate Registration"
+            src="https://pci.jotform.com/form/251228111219042"
+            allowtransparency="true"
+            allow="geolocation; microphone; camera; fullscreen"
+            scrolling="yes"
+            style="min-height:900px;"
+          ></iframe>
+        </div>
       </div>
     </section>
+
+    <!-- ─── COUNTRY MATRIX ─── -->
+    <section class="section country-matrix">
+      <div class="container">
+        <div class="section-mini-title-flex" style="justify-content:center;">
+          <div class="section-title-dot"></div>
+          <div class="section-mini-title">Committees</div>
+        </div>
+        <h2 class="section-title">Country Matrix</h2>
+        <p class="section-details">Check which countries are available for each committee</p>
+        <div class="country-matrix-wrap">
+          <iframe
+            title="Country Matrix"
+            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR93KDkX0gRcpfFJYxI-dFWT1s1oLJS-ewhi8C1h0kAXNtGXsfbJSJJIlYfpdssG4_f0-PiC14t0zTJ/pubhtml"
+            allowfullscreen
+            allow="fullscreen"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── FAQ ─── -->
     <section class="section faq" style="margin-top: 5rem;">
       <div class="container">
         <div class="faq-wrapper mg-top-0-rem">
@@ -249,6 +579,8 @@
         </div>
       </div>
     </section>
+
+    <!-- ─── FOOTER ─── -->
     <section data-wf--footer--variant="base" class="section footer">
       <div class="footer-wrapper">
         <div class="container">
@@ -303,11 +635,76 @@
       </div>
     </section>
   </div>
+
   <script src="../js/jquery.js?site=67ce83d0b67e4995faf5329d" type="text/javascript"></script>
   <script src="../js/webflow.schunk.dc8c5f8672644daa.js" type="text/javascript"></script>
   <script src="../js/webflow.schunk.2be5f1d74a0cfced.js" type="text/javascript"></script>
   <script src="../js/webflow.schunk.f28319d2fee81553.js" type="text/javascript"></script>
   <script src="../js/webflow-script-3.js" type="text/javascript"></script>
-</body>
 
+  <!-- Smooth scroll to form -->
+  <script>
+    document.querySelector('.plan-button').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('registration-form').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Resize JotForm iframe dynamically
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.action === 'setHeight') {
+        var iframe = document.getElementById('JotFormIFrame-251228111219042');
+        if (iframe) iframe.style.minHeight = event.data.height + 'px';
+      }
+    });
+
+    // FAQ accordion — smooth animate, all collapsed on load
+    (function () {
+      // Inject transition styles
+      var style = document.createElement('style');
+      style.textContent = [
+        '.faq-accordion-answer-wrap {',
+        '  display: block !important;',
+        '  overflow: hidden;',
+        '  max-height: 0;',
+        '  opacity: 0;',
+        '  transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;',
+        '  padding-top: 0 !important;',
+        '  padding-bottom: 0;',
+        '}',
+        '.faq-accordion-answer-wrap.is-open {',
+        '  max-height: 400px;',
+        '  opacity: 1;',
+        '  padding-top: 0.8rem !important;',
+        '  padding-bottom: 0.4rem;',
+        '}'
+      ].join('');
+      document.head.appendChild(style);
+
+      // Collapse all on load (remove w--current from the first item Webflow pre-opens)
+      document.querySelectorAll('.single-faq-accordion-wrap').forEach(function(el) {
+        el.classList.remove('w--current');
+      });
+
+      // Click handler
+      document.querySelectorAll('.single-faq-accordion-wrap').forEach(function(item) {
+        item.addEventListener('click', function(e) {
+          e.preventDefault();
+          var isOpen = this.classList.contains('w--current');
+
+          // Close all
+          document.querySelectorAll('.single-faq-accordion-wrap').forEach(function(el) {
+            el.classList.remove('w--current');
+            el.querySelector('.faq-accordion-answer-wrap').classList.remove('is-open');
+          });
+
+          // Open clicked one if it was closed
+          if (!isOpen) {
+            this.classList.add('w--current');
+            this.querySelector('.faq-accordion-answer-wrap').classList.add('is-open');
+          }
+        });
+      });
+    })();
+  </script>
+</body>
 </html>
