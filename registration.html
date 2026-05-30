@@ -206,16 +206,18 @@
       display: flex; align-items: center; justify-content: center; flex-shrink: 0;
       box-shadow: 0 0 12px rgba(59,130,246,0.2);
     }
-    .pricing-plan-logo { width: 32px; height: 32px; object-fit: contain; }
+    .pricing-plan-logo { width: 48px; height: 48px; object-fit: contain; }
 
     .pricing-plan-name {
       font-family: var(--ff-display);
       font-size: 1.5rem; font-weight: 600;
-      color: #fff !important; line-height: 1.15;
+      color: #60a5fa !important; line-height: 1.15;
+      text-shadow: none;
     }
     .pricing-plan-info {
-      font-size: 0.82rem; color: #93c5fd !important;
+      font-size: 0.82rem; color: rgba(221,232,247,0.7) !important;
       margin-top: 0.2rem; letter-spacing: 0.05em; text-transform: uppercase;
+      font-weight: 500;
     }
 
     .plan-price-wrap {
@@ -226,27 +228,57 @@
     .plan-price {
       font-family: var(--ff-display); font-size: 3rem; font-weight: 300;
       color: #60a5fa !important; line-height: 1;
-      text-shadow: 0 0 20px rgba(96,165,250,0.5);
+      text-shadow: none;
     }
     .plan-price-flex-wrap { display: flex; flex-direction: column; }
-    .plan-price-info { font-size: 0.78rem; color: rgba(221,232,247,0.4) !important; letter-spacing: 0.05em; }
+    .plan-price-info { font-size: 0.78rem; color: rgba(221,232,247,0.6) !important; letter-spacing: 0.05em; font-weight: 500; }
 
-    .plan-feature-card { margin-bottom: 2rem; }
+    .plan-feature-card { 
+      margin-bottom: 2rem;
+      padding: 1.15rem;
+      border-radius: 12px;
+      background: rgba(8,15,32,0.58) !important;
+      border: 1px solid rgba(59,130,246,0.16);
+      box-shadow: inset 0 0 22px rgba(59,130,246,0.04);
+    }
+
+    /* Keep all inner pricing-card panels in the same dark blue scheme */
+    .pricing-plan-card-contant,
+    .pricing-plan-card-contant::before,
+    .pricing-plan-card-contant::after,
+    .pricing-plan-logo-info-wrap,
+    .plan-feature-list-wrap,
+    .pricing-plan-details-wrap,
+    .pricing-plan-details-wrap::before,
+    .pricing-plan-details-wrap::after {
+      background: transparent !important;
+    }
+
+    .pricing-plan-details-wrap {
+      margin-top: 0.5rem;
+      padding: 1rem 1.15rem;
+      border-radius: 12px;
+      background: rgba(8,15,32,0.45) !important;
+      border: 1px solid rgba(59,130,246,0.14);
+    }
+
     .plan-feature-list-wrap { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
     .plan-feature-item-wrap {
       display: flex; align-items: center; gap: 0.75rem;
-      font-size: 0.9rem; color: rgba(221,232,247,0.8);
+      font-size: 0.9rem; color: rgba(221,232,247,0.85);
+      font-weight: 400;
     }
     .plan-feature-item-wrap::before {
-      content: '✦'; color: #3b82f6; font-size: 0.6rem; flex-shrink: 0;
+      content: '✦'; color: #60a5fa; font-size: 0.6rem; flex-shrink: 0;
+      text-shadow: none;
     }
 
     /* CTA Button */
     .plan-button {
       display: block; width: 100%; padding: 1rem 1.5rem;
       border-radius: 10px;
-      background: var(--blue-mid);
-      color: #fff;
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: #dde8f7;
       font-family: var(--ff-body); font-size: 0.88rem; font-weight: 600;
       letter-spacing: 0.08em; text-transform: uppercase; text-align: center;
       text-decoration: none; cursor: pointer; border: none;
@@ -255,19 +287,67 @@
       margin-bottom: 1.5rem;
     }
     .plan-button:hover {
-      background: var(--blue);
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
       transform: translateY(-2px);
       box-shadow: 0 0 32px rgba(59,130,246,0.6), 0 8px 24px rgba(0,0,0,0.5);
     }
     .plan-button-text { pointer-events: none; }
     .plan-button-hover-text { display: none; }
 
-    .pricing-plan-details-wrap { margin-top: 0.5rem; }
     .pricing-plan-details-info {
       font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em;
-      color: #3b82f6 !important; margin-bottom: 0.4rem;
+      color: #60a5fa !important; margin-bottom: 0.4rem; font-weight: 600;
     }
-    .pricing-plan-details { font-size: 0.85rem; color: rgba(221,232,247,0.45) !important; line-height: 1.6; }
+    .pricing-plan-details { font-size: 0.85rem; color: rgba(221,232,247,0.6) !important; line-height: 1.6; }
+
+    /* Crisp text inside the pricing card — bright, but not blurry */
+    .pricing-plan-card,
+    .pricing-plan-card * {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: geometricPrecision;
+    }
+
+    .pricing-plan-card .pricing-plan-name {
+      color: #bfdbfe !important;
+      text-shadow: none !important;
+      letter-spacing: 0.01em;
+    }
+
+    .pricing-plan-card .plan-price {
+      color: #dbeafe !important;
+      text-shadow: none !important;
+    }
+
+    .pricing-plan-card .pricing-plan-info,
+    .pricing-plan-card .plan-price-info,
+    .pricing-plan-card .plan-feature-info,
+    .pricing-plan-card .pricing-plan-details,
+    .pricing-plan-card .pricing-plan-details-info,
+    .pricing-plan-card .plan-button-text {
+      text-shadow: none !important;
+    }
+
+    .pricing-plan-card .plan-feature-info {
+      color: rgba(221,232,247,0.92) !important;
+    }
+
+    .pricing-plan-card .pricing-plan-details {
+      color: rgba(221,232,247,0.76) !important;
+    }
+
+    .pricing-plan-card .pricing-plan-details-info {
+      color: #93c5fd !important;
+    }
+
+    .pricing-plan-card .plan-feature-item-wrap::before {
+      color: #93c5fd;
+      text-shadow: none !important;
+    }
+
+    .pricing-plan-card .plan-button {
+      box-shadow: 0 0 14px rgba(59,130,246,0.32), 0 4px 16px rgba(0,0,0,0.4);
+    }
 
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        REGISTRATION FORM SECTION
@@ -396,7 +476,7 @@
               Registration Open
             </div>
             <div class="inner-banner-title-wrap">
-              <h1 class="inner-banner-title">Register for <span>SPAMUN 2025</span></h1>
+              <h1 class="inner-banner-title">Register for <span>SPAMUN 2026</span></h1>
               <p class="inner-banner-details">Secure your spot at South Pointe's Model UN conference</p>
             </div>
           </div>
@@ -417,18 +497,18 @@
                       <div class="pricing-plan-card-contant">
                         <div class="pricing-plan-logo-info-wrap">
                           <div class="pricing-plan-logo-wrap">
-                            <img loading="lazy" alt="" src="../images/pricing-plan-icon-1.png" class="pricing-plan-logo" />
+                            <img loading="lazy" alt="SPAMUN Logo" src="img/logo.png" class="pricing-plan-logo" />
                           </div>
                           <div class="pricing-plan-info-wrap">
                             <div class="pricing-plan-name-wrap">
                               <h2 class="pricing-plan-name">Delegate</h2>
                               <h2 class="pricing-plan-name">Registration</h2>
                             </div>
-                            <div class="pricing-plan-info">Join SPAMUN 2025</div>
+                            <div class="pricing-plan-info">Join SPAMUN 2026</div>
                           </div>
                         </div>
                         <div class="plan-price-wrap">
-                          <h2 class="plan-price">$20.00</h2>
+                          <h2 class="plan-price">$25.00</h2>
                           <div class="plan-price-flex-wrap">
                             <div class="plan-price-info">/</div>
                             <div class="plan-price-info">per Delegate</div>
@@ -471,12 +551,12 @@
             <div class="section-mini-title">Secure Your Seat</div>
           </div>
           <h2 class="form-section-title">Complete Your Registration</h2>
-          <p class="form-section-subtitle">Fill out the form below to register as a delegate for SPAMUN 2025</p>
+          <p class="form-section-subtitle">Fill out the form below to register as a delegate for SPAMUN 2026</p>
         </div>
         <div class="jotform-wrap">
           <iframe
             id="JotFormIFrame-251228111219042"
-            title="SPAMUN 2025 Delegate Registration"
+            title="SPAMUN 2026 Delegate Registration"
             src="https://pci.jotform.com/form/251228111219042"
             allowtransparency="true"
             allow="geolocation; microphone; camera; fullscreen"
