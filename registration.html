@@ -11,7 +11,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="og:image" content="../img/logo.png" />
   <meta name="twitter:image" content="../img/logo.png" />
-  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" name="viewport" />
   <meta content="Webflow" name="generator" />
   <link href="css/styles.css" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -44,6 +44,10 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* ─── Enable smooth scrolling globally ─── */
+    html { scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+    body { overscroll-behavior: auto; }
+
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        BACKGROUND — dark navy + grid lines + blue radial glow
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -62,7 +66,7 @@
     /* central blue radial glow layered on top of grid */
     .pages-wrapper::before {
       content: '';
-      position: fixed;
+      position: absolute;
       top: -10%;
       left: 50%;
       transform: translateX(-50%);
@@ -71,6 +75,13 @@
       background: radial-gradient(ellipse at center, rgba(37,99,235,0.28) 0%, transparent 70%);
       pointer-events: none;
       z-index: 0;
+    }
+
+    /* Hide radial glow on mobile to improve scroll performance */
+    @media (max-width: 768px) {
+      .pages-wrapper::before {
+        display: none;
+      }
     }
     .pages-wrapper > * { position: relative; z-index: 1; }
 
@@ -99,6 +110,10 @@
       padding: 7rem 1.5rem 5rem;
       text-align: center;
       overflow: hidden;
+    }
+
+    @media (max-width: 768px) {
+      .inner-banner { padding: 4rem 1rem 3rem; }
     }
     .inner-banner::after {
       content: '';
@@ -175,6 +190,10 @@
        PRICING SECTION
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     .section.pricing-plan { padding: 3rem 1.5rem 5rem; }
+
+    @media (max-width: 768px) {
+      .section.pricing-plan { padding: 2rem 1rem 3rem; }
+    }
     .container { max-width: 1120px; margin: 0 auto; padding: 0 1.5rem; }
 
     .pricing-plan-card {
@@ -354,6 +373,11 @@
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     .section.registration-form-section { padding: 2rem 1.5rem 5rem; }
 
+    /* ─── Mobile optimization for form section ─── */
+    @media (max-width: 768px) {
+      .section.registration-form-section { padding: 1.5rem 1rem 3rem; }
+    }
+
     .form-section-header { text-align: center; margin-bottom: 3rem; }
 
     .section-mini-title-flex {
@@ -380,9 +404,30 @@
       backdrop-filter: blur(12px);
       box-shadow: 0 0 60px rgba(59,130,246,0.12), 0 24px 80px rgba(0,0,0,0.5);
       animation: fadeUp 0.9s 0.2s ease both;
+      -webkit-overflow-scrolling: touch;
     }
     .jotform-wrap iframe {
       display: block; width: 100%; min-height: 900px; border: none; background: transparent;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* ─── Mobile-responsive iframe heights ─── */
+    @media (max-width: 768px) {
+      .jotform-wrap iframe {
+        min-height: 600px;
+      }
+      .country-matrix-wrap iframe {
+        min-height: 450px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .jotform-wrap iframe {
+        min-height: 500px;
+      }
+      .country-matrix-wrap iframe {
+        min-height: 350px;
+      }
     }
 
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -391,6 +436,10 @@
     .section.country-matrix {
       text-align: center; padding: 4rem 1.5rem;
       border-top: 1px solid rgba(59,130,246,0.1);
+    }
+
+    @media (max-width: 768px) {
+      .section.country-matrix { padding: 2rem 1rem; }
     }
     .section-title {
       font-family: var(--ff-display); font-size: clamp(1.8rem, 4vw, 2.8rem);
@@ -406,9 +455,20 @@
       box-shadow: 0 0 60px rgba(59,130,246,0.12), 0 24px 80px rgba(0,0,0,0.5);
       animation: fadeUp 0.9s 0.2s ease both;
       margin-top: 2rem;
+      -webkit-overflow-scrolling: touch;
     }
     .country-matrix-wrap iframe {
       display: block; width: 100%; min-height: 700px; border: none; background: transparent;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-y;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* Prevent zoom on iframe interaction */
+    .country-matrix-wrap {
+      touch-action: pan-y pinch-zoom;
+      -webkit-touch-callout: none;
     }
     
     .matrix-button {
@@ -580,8 +640,8 @@
           <iframe
             title="Country Matrix"
             src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR93KDkX0gRcpfFJYxI-dFWT1s1oLJS-ewhi8C1h0kAXNtGXsfbJSJJIlYfpdssG4_f0-PiC14t0zTJ/pubhtml"
-            allowfullscreen
-            allow="fullscreen"
+            sandbox="allow-same-origin allow-scripts allow-popups allow-presentation"
+            style="touch-action: pan-y;"
           ></iframe>
         </div>
       </div>
